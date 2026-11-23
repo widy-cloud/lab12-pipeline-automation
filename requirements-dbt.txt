@@ -1,0 +1,4 @@
+# dbt lives in its own virtual environment (see .devcontainer/setup.sh)
+dbt-core~=1.12.0
+dbt-duckdb~=1.11.0
+duckdb==2.0.0          # same DuckDB version as the Airflow environment

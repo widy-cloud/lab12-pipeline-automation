@@ -1,0 +1,8 @@
+.airflow/
+warehouse/
+dbt/target/
+dbt/logs/
+logs/
+__pycache__/
+*.duckdb.wal
+dbt/.user.yml

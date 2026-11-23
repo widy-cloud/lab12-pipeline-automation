@@ -1,0 +1,28 @@
+{
+  "name": "Lab 12 - Data Pipeline Automation",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
+  "hostRequirements": { "cpus": 2, "memory": "8gb" },
+
+  "containerEnv": {
+    "LAB_HOME": "${containerWorkspaceFolder}",
+    "DUCKDB_PATH": "${containerWorkspaceFolder}/warehouse/retail.duckdb",
+    "AIRFLOW_HOME": "${containerWorkspaceFolder}/.airflow",
+    "AIRFLOW__CORE__DAGS_FOLDER": "${containerWorkspaceFolder}/dags",
+    "AIRFLOW__CORE__LOAD_EXAMPLES": "False",
+    "AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_ALL_ADMINS": "True",
+    "AIRFLOW__CORE__DEFAULT_TIMEZONE": "Asia/Jakarta"
+  },
+  "remoteEnv": { "PATH": "/home/vscode/.local/bin:${containerEnv:PATH}" },
+
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  "forwardPorts": [8080, 8081],
+  "portsAttributes": {
+    "8080": { "label": "Airflow UI", "onAutoForward": "notify" },
+    "8081": { "label": "dbt docs",   "onAutoForward": "notify" }
+  },
+
+  "customizations": {
+    "vscode": { "extensions": ["ms-python.python"] }
+  }
+}

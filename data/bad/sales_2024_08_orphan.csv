@@ -1,0 +1,3 @@
+order_id,customer_id,product_id,order_date,quantity,price
+1289,999,1,2024-08-03,1,7500000
+1290,2,3,2024-08-04,2,250000

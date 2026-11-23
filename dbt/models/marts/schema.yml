@@ -1,0 +1,38 @@
+version: 2
+
+# These tests replace the hand-written quality checks (qc = {...}) from Practice 10.
+models:
+  - name: dim_customer
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]
+
+  - name: dim_product
+    columns:
+      - name: product_id
+        tests: [unique, not_null]
+
+  - name: dim_date
+    columns:
+      - name: date_key
+        tests: [unique, not_null]
+
+  - name: fact_sales
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+      - name: date_key
+        tests:
+          - not_null
+          - relationships:            # no orphan dates
+              arguments: {to: ref('dim_date'), field: date_key}
+      - name: customer_id
+        tests:
+          - not_null
+          - relationships:            # no orphan customers
+              arguments: {to: ref('dim_customer'), field: customer_id}
+      - name: product_id
+        tests:
+          - not_null
+          - relationships:            # no orphan products
+              arguments: {to: ref('dim_product'), field: product_id}

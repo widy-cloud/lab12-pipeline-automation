@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: stg_sales
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+      - name: order_date
+        description: "Rows with an unreadable date are kept here but excluded from fact_sales"
+        tests:
+          - not_null:
+              config:
+                severity: warn     # warn = report it, but don't stop the pipeline

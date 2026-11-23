@@ -1,0 +1,8 @@
+# Connection settings. The warehouse is a single DuckDB file.
+retail:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('DUCKDB_PATH', '../warehouse/retail.duckdb') }}"
+      threads: 1
